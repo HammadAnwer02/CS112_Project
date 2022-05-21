@@ -7,38 +7,39 @@ TicTacToe::TicTacToe()
 {
 }
 
-void TicTacToe::showBoard()
+void TicTacToe::showBoard()   //Display Board
 {
     system("cls");
     cout << "\n\n\tTic Tac Toe\n\n";
 
     cout << "Player 1 (X)  -  Player 2 (O)" << endl
-         << endl;
+        << endl;
     cout << endl;
 
     cout << "     |     |     " << endl;
-    cout << "  " << board[0] << "  |  " << board[1] << "  |  " << board[2] << endl;
+    cout << "  " << board[0] << "  |  " << board[1] << "  |  " << board[2] << endl; //First Row
 
     cout << "_____|_____|_____" << endl;
     cout << "     |     |     " << endl;
 
-    cout << "  " << board[3] << "  |  " << board[4] << "  |  " << board[5] << endl;
+    cout << "  " << board[3] << "  |  " << board[4] << "  |  " << board[5] << endl;//Second Row
 
     cout << "_____|_____|_____" << endl;
     cout << "     |     |     " << endl;
 
-    cout << "  " << board[6] << "  |  " << board[7] << "  |  " << board[8] << endl;
+    cout << "  " << board[6] << "  |  " << board[7] << "  |  " << board[8] << endl;// Third Row
 
     cout << "     |     |     " << endl
-         << endl;
+        << endl;
 }
 
-bool TicTacToe::isDraw()
+bool TicTacToe::isDraw()    //Checking for the draw
 {
     return (board[0] != '1' && board[1] != '2' && board[2] != '3' && board[3] != '4' && board[4] != '5' && board[5] != '6' && board[6] != '7' && board[7] != '8' && board[8] != '9');
 }
-int TicTacToe::checkwin()
+int TicTacToe::checkwin()//Checking if any player wins
 {
+    //Checking for elements in a row
     if (board[1] == board[2] && board[2] == board[3])
 
         return 1;
@@ -48,6 +49,7 @@ int TicTacToe::checkwin()
     else if (board[7] == board[8] && board[8] == board[9])
 
         return 1;
+    //Checking for elements in a column
     else if (board[1] == board[4] && board[4] == board[7])
 
         return 1;
@@ -57,6 +59,7 @@ int TicTacToe::checkwin()
     else if (board[3] == board[6] && board[6] == board[9])
 
         return 1;
+    //Checking for diagonals
     else if (board[1] == board[5] && board[5] == board[9])
 
         return 1;
@@ -69,7 +72,7 @@ int TicTacToe::checkwin()
         return -1;
 }
 
-void TicTacToe::makeMove()
+void TicTacToe::makeMove()      //Make move 
 {
     int player = 1;
     int i, choice;
@@ -78,6 +81,7 @@ void TicTacToe::makeMove()
     do
     {
         showBoard();
+        //Changing Players
         player = (player % 2) ? 1 : 2;
 
         cout << "Player " << player << ", enter a number:  ";
