@@ -31,7 +31,7 @@ public:
         }
     }
 
-    void print_vec()
+    void print_vec()    //prints the 2D vector
     {
         for (int i = 0; i < input1.size(); i++)
         {
