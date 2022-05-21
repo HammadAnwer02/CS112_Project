@@ -52,7 +52,7 @@ public:
                 count++;
                 if (count % 10 == 0)
                 {
-                    out << endl;
+                    out << "," << endl;
                 }
             }
             InputCount++;
