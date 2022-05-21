@@ -6,7 +6,7 @@
 #include <map>
 using namespace std;
 
-class myMapping
+class myMapping // converts the data from the training text file into integers
 {
     map<string, int> mapping{
         {"o", 2},
@@ -19,22 +19,22 @@ class myMapping
     static int num;
 
 public:
-    void reading_value()
+    void reading_value() // reads all the values from the file and stores them in the string vector "input"
     {
         ifstream in{"tic-tac-toe.txt"};
         string temp;
         while (getline(in, temp))
         {
             input.push_back(temp);
-            num++;
+            num++; // keeps count of the number of inputs
         }
     }
 
-    void output_values()
+    void output_values() // outputs all the values form the vector string onto the updated file
     {
         ofstream out{"updated-tictactoe.txt"};
-        int count = 0;
-        int InputCount = 0;
+        int count = 0;      // to track the currnt index of a string
+        int InputCount = 0; // to track the current index of the vector
         vector<string> tempinput;
         while (InputCount != num)
         {
@@ -59,7 +59,7 @@ public:
         }
     }
 
-    vector<string> tokenize(string x)
+    vector<string> tokenize(string x) // tokenizes each string stored int the vector "input"
     {
 
         vector<string> tokens;
