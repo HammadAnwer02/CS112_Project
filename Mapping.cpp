@@ -16,6 +16,7 @@ class myMapping // converts the data from the training text file into integers
         {"negative", -1}};
 
     vector<string> input;
+    vector<vector<string>> input1; // 2D vector to hold data from the file
     static int num;
 
 public:
@@ -30,35 +31,44 @@ public:
         }
     }
 
+    void print_vec()
+    {
+        for (int i = 0; i < input1.size(); i++)
+        {
+            for (int j = 0; j < input1[i].size(); j++)
+            {
+                cout << input1[i][j] << " ";
+            }
+            cout << endl;
+        }
+    }
+
     void output_values() // outputs all the values form the vector string onto the updated file
     {
         ofstream out{"updated-tictactoe.txt"};
-        int count = 0;      // to track the currnt index of a string
-        int InputCount = 0; // to track the current index of the vector
-        vector<string> tempinput;
+        int count = 0;             // to track the current index of a tokenized string
+        int InputCount = 0;        // to track the current index of the vector
+        vector<string> tempinput;  // temp variable to print mapped data in file
+        vector<string> tempinput2; // temp variable to print mapped data in 2D vector
+        int x;                     // mapped value of tokenized string
         while (InputCount != num)
         {
             tempinput = tokenize(input[InputCount]);
-            for (int i = 0; i < tempinput.size(); i++)
+            input1.push_back(tempinput);
+
+            for (int j = 0; j < tempinput.size(); j++)
             {
-                if (i != tempinput.size() - 1)
-                {
-                    out << mapping[tempinput[i]] << ",";
-                }
-                else
-                {
-                    out << mapping[tempinput[i]];
-                }
+                int x = mapping[tempinput[j]];
+                out << x << ",";
                 count++;
                 if (count % 10 == 0)
                 {
-                    out << "," << endl;
+                    out << endl;
                 }
             }
             InputCount++;
         }
     }
-
     vector<string> tokenize(string x) // tokenizes each string stored int the vector "input"
     {
 
@@ -90,4 +100,5 @@ int main()
     myMapping m1;
     m1.reading_value();
     m1.output_values();
+    m1.print_vec();
 }
