@@ -1,134 +1,141 @@
 #include <iostream>
+#include "TicTacToe.h"
+
 using namespace std;
-class TicTacToe
+
+TicTacToe::TicTacToe()
 {
-    char square[9] = {'1','2','3','4','5','6','7','8','9'};
-public:
-    TicTacToe()
-    { }
-    int checkwin()
+}
+
+void TicTacToe::showBoard()
+{
+    system("cls");
+    cout << "\n\n\tTic Tac Toe\n\n";
+
+    cout << "Player 1 (X)  -  Player 2 (O)" << endl
+         << endl;
+    cout << endl;
+
+    cout << "     |     |     " << endl;
+    cout << "  " << board[0] << "  |  " << board[1] << "  |  " << board[2] << endl;
+
+    cout << "_____|_____|_____" << endl;
+    cout << "     |     |     " << endl;
+
+    cout << "  " << board[3] << "  |  " << board[4] << "  |  " << board[5] << endl;
+
+    cout << "_____|_____|_____" << endl;
+    cout << "     |     |     " << endl;
+
+    cout << "  " << board[6] << "  |  " << board[7] << "  |  " << board[8] << endl;
+
+    cout << "     |     |     " << endl
+         << endl;
+}
+
+bool TicTacToe::isDraw()
+{
+    return (board[1] != '1' && board[2] != '2' && board[3] != '3' && board[4] != '4' && board[5] != '5' && board[6] != '6' && board[7] != '7' && board[8] != '8' && board[9] != '9');
+}
+int TicTacToe::checkwin()
+{
+    if (board[1] == board[2] && board[2] == board[3])
+
+        return 1;
+    else if (board[4] == board[5] && board[5] == board[6])
+
+        return 1;
+    else if (board[7] == board[8] && board[8] == board[9])
+
+        return 1;
+    else if (board[1] == board[4] && board[4] == board[7])
+
+        return 1;
+    else if (board[2] == board[5] && board[5] == board[8])
+
+        return 1;
+    else if (board[3] == board[6] && board[6] == board[9])
+
+        return 1;
+    else if (board[1] == board[5] && board[5] == board[9])
+
+        return 1;
+    else if (board[3] == board[5] && board[5] == board[7])
+
+        return 1;
+    else if (isDraw())
+        return 0;
+    else
+        return -1;
+}
+
+void TicTacToe::makeMove()
+{
+    int player = 1;
+    int i, choice;
+
+    char mark;
+    do
     {
-        if (square[1] == square[2] && square[2] == square[3])
+        showBoard();
+        player = (player % 2) ? 1 : 2;
 
-            return 1;
-        else if (square[4] == square[5] && square[5] == square[6])
+        cout << "Player " << player << ", enter a number:  ";
+        cin >> choice;
 
-            return 1;
-        else if (square[7] == square[8] && square[8] == square[9])
+        mark = (player == 1) ? 'X' : 'O';
 
-            return 1;
-        else if (square[1] == square[4] && square[4] == square[7])
+        if (choice == 1 && board[0] == '1')
 
-            return 1;
-        else if (square[2] == square[5] && square[5] == square[8])
+            board[0] = mark;
+        else if (choice == 2 && board[1] == '2')
 
-            return 1;
-        else if (square[3] == square[6] && square[6] == square[9])
+            board[1] = mark;
+        else if (choice == 3 && board[2] == '3')
 
-            return 1;
-        else if (square[1] == square[5] && square[5] == square[9])
+            board[2] = mark;
+        else if (choice == 4 && board[3] == '4')
 
-            return 1;
-        else if (square[3] == square[5] && square[5] == square[7])
+            board[3] = mark;
+        else if (choice == 5 && board[4] == '5')
 
-            return 1;
-        else if (square[1] != '1' && square[2] != '2' && square[3] != '3'
-            && square[4] != '4' && square[5] != '5' && square[6] != '6'
-            && square[7] != '7' && square[8] != '8' && square[9] != '9')
+            board[4] = mark;
+        else if (choice == 6 && board[5] == '6')
 
-            return 0;
+            board[5] = mark;
+        else if (choice == 7 && board[6] == '7')
+
+            board[6] = mark;
+        else if (choice == 8 && board[7] == '8')
+
+            board[7] = mark;
+        else if (choice == 9 && board[8] == '9')
+
+            board[8] = mark;
         else
-            return -1;
-    }
-    void board()
-    {
-        system("cls");
-        cout << "\n\n\tTic Tac Toe\n\n";
-
-        cout << "Player 1 (X)  -  Player 2 (O)" << endl << endl;
-        cout << endl;
-
-        cout << "     |     |     " << endl;
-        cout << "  " << square[0] << "  |  " << square[1] << "  |  " << square[2] << endl;
-
-        cout << "_____|_____|_____" << endl;
-        cout << "     |     |     " << endl;
-
-        cout << "  " << square[3] << "  |  " << square[4] << "  |  " << square[5] << endl;
-
-        cout << "_____|_____|_____" << endl;
-        cout << "     |     |     " << endl;
-
-        cout << "  " << square[6] << "  |  " << square[7] << "  |  " << square[8] << endl;
-
-        cout << "     |     |     " << endl << endl;
-    }
-    void play()
-    {
-        int player = 1;
-        int i, choice;
-
-        char mark;
-        do
         {
-            board();
-            player = (player % 2) ? 1 : 2;
+            cout << "Invalid move ";
 
-            cout << "Player " << player << ", enter a number:  ";
-            cin >> choice;
+            player--;
+            cin.ignore();
+            cin.get();
+        }
+        i = checkwin();
 
-            mark = (player == 1) ? 'X' : 'O';
+        player++;
+    } while (i == -1);
+    showBoard();
+    if (i == 1)
 
-            if (choice == 1 && square[0] == '1')
+        cout << "==>\aPlayer " << --player << " win ";
+    else
+        cout << "==>\aGame draw";
+}
 
-                square[0] = mark;
-            else if (choice == 2 && square[1] == '2')
-
-                square[1] = mark;
-            else if (choice == 3 && square[2] == '3')
-
-                square[2] = mark;
-            else if (choice == 4 && square[3] == '4')
-
-                square[3] = mark;
-            else if (choice == 5 && square[4] == '5')
-
-                square[4] = mark;
-            else if (choice == 6 && square[5] == '6')
-
-                square[5] = mark;
-            else if (choice == 7 && square[6] == '7')
-
-                square[6] = mark;
-            else if (choice == 8 && square[7] == '8')
-
-                square[7] = mark;
-            else if (choice == 9 && square[8] == '9')
-
-                square[8] = mark;
-            else
-            {
-                cout << "Invalid move ";
-
-                player--;
-                cin.ignore();
-                cin.get();
-            }
-            i = checkwin();
-
-            player++;
-        } while (i == -1);
-        board();
-        if (i == 1)
-
-            cout << "==>\aPlayer " << --player << " win ";
-        else
-            cout << "==>\aGame draw";
+vector<double> TicTacToe::getBoardState() {
+    vector<double> temp;
+    for (int i = 0; i < 9; i++) {
+        temp.push_back(static_cast<double>(board[i]));
     }
-
-};
-int main()
-{
-    TicTacToe t;
-    t.play();
+    return temp;
 }
